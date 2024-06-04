@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<type name="Magento\Framework\AppInterface">
+		<plugin name="JustBetter_InspectorApm_Plugin_Magento_Framework_AppInterface" type="JustBetter\InspectorApm\Plugin\Magento\Framework\AppInterface" sortOrder="10" disabled="false"/>
+	</type>
+    <virtualType name="Magento\Framework\Profiler\Driver\Inspector" type="JustBetter\InspectorApm\Profiler\Driver\InspectorDriver"></virtualType>
+    <virtualType name="Magento\Framework\Profiler\Driver\Standard\Output\Inspector" type="JustBetter\InspectorApm\Profiler\Driver\Standard\Output\Inspector"></virtualType>
+
+    <type name="Magento\Framework\Console\CommandList">
+		<arguments>
+			<argument name="commands" xsi:type="array">
+				<item name="inspector:enable" xsi:type="object">JustBetter\InspectorApm\Console\Command\EnableInspector</item>
+				<item name="inspector:disable" xsi:type="object">JustBetter\InspectorApm\Console\Command\DisableInspector</item>
+			</argument>
+		</arguments>
+	</type>
+</config>

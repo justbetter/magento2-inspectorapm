@@ -1,0 +1,18 @@
+{
+    "name": "justbetter/magento2-inspectorapm",
+    "description": "Add Inspector APM support for Magento",
+    "type": "magento2-module",
+    "license": "GPL-3.0",
+    "minimum-stability": "dev",
+    "require": {
+        "inspector-apm/inspector-php": "^3.7"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "JustBetter\\InspectorApm\\": ""
+        }
+    }
+}
