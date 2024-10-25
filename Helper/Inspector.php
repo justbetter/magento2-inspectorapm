@@ -49,7 +49,10 @@ class Inspector
         if (!$this->transaction) {
             $pathInfo = explode('?', $_SERVER["REQUEST_URI"] ?? '');
             $path = array_shift($pathInfo);
-            $this->startTransaction($path ?: implode(' ', $_SERVER['argv'] ?? []));
+            $transaction = $this->startTransaction($path ?: implode(' ', $_SERVER['argv'] ?? []))->setType('process');
+            if ($path && $transaction) {
+                $transaction->markAsRequest();
+            }
         }
 
         if (is_callable(array($inspector, $method))) {

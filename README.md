@@ -1,16 +1,13 @@
 # Mage2 Module JustBetter InspectorApm
 
-    ``justbetter/module-inspectorapm``
-
 ## Main Functionalities
 Add Inspector APM support for Magento
 
 ## Installation
-\* = in production please use the `--keep-generated` option
 
 ### Composer
 
- - Install the module composer by running `composer require justbetter/module-inspectorapm`
+ - Install the module composer by running `composer require justbetter/magento2-inspectorapm (--dev)`
  - enable the module by running `php bin/magento module:enable JustBetter_InspectorApm`
  - Flush the cache by running `php bin/magento cache:flush`
 
@@ -23,15 +20,33 @@ add
 return [
     ...
     'inspector_apm' => [
-        'ingestion_key' => '...',
+        'ingestion_key' => $_ENV['INSPECTOR_INGESTION_KEY'] ?? '...',
         // Optional, default: https://ingest.inspector.dev
-        'url' => '...',
+        'url' => $_ENV['INSPECTOR_URL'] ?? 'https://ingest.inspector.dev',
     ],
     ...
 ]
 ```
 
 To your env.php.
+
+### Buggregator
+
+If you wish to use buggregator instead of inspector you can set the configuration to
+
+```php
+<?php
+return [
+    ...
+    'inspector_apm' => [
+        'ingestion_key' => $_ENV['INSPECTOR_INGESTION_KEY'] ?? 'anything-as-its-not-used',
+        'url' => $_ENV['INSPECTOR_URL'] ?? 'http://inspector@127.0.0.1:8000',
+    ],
+    ...
+]
+```
+
+In your env.php.
 
 ## Usage
 

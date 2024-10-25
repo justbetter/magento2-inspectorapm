@@ -30,7 +30,7 @@ class DbProfiler extends Profiler
         $queryId = parent::queryStart(...func_get_args());
 
         if ($queryId) {
-            $this->timers[$queryId] = $this->getInspector()?->startSegment('SQL Query', $queryText);
+            $this->timers[$queryId] = $this->getInspector()?->startSegment('process', $queryText);
         }
 
         return $queryId;
